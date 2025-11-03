@@ -1,0 +1,8 @@
+data/
+LOGO_5_gram_2_layer_8_heads_256_dim_weights_32-0.885107.hdf5
+Promotech/
+01_Pre-training_Model/*.tf
+01_Pre-training_Model/*.txt
+01_Pre-training_Model/*.zip
+02_promoter_prediction/*.npz
+02_promoter_prediction/*.txt

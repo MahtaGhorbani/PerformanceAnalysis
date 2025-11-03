@@ -1,0 +1,102 @@
+Sender: LSF System <lsfadmin@cmp-a8-n002>
+Subject: Job 4241: <LOGO_promo> in cluster <clusterCAIR> Exited
+
+Job <LOGO_promo> was submitted from host <cair-login1> by user <fatemehg> in cluster <clusterCAIR> at Thu Oct 12 20:10:05 2023
+Job was executed on host(s) <cmp-a8-n002>, in queue <normal>, as user <fatemehg> in cluster <clusterCAIR> at Thu Oct 12 20:10:06 2023
+</home/fatemehg> was used as the home directory.
+</home/fatemehg/LOGO/02_promoter_prediction> was used as the working directory.
+Started at Thu Oct 12 20:10:06 2023
+Terminated at Thu Oct 12 20:13:15 2023
+Results reported at Thu Oct 12 20:13:15 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J LOGO_promo
+#BSUB -o output.log
+#BSUB -e error.log
+
+module load miniconda/pytorch-tensorflow-cpu
+python 01_promotech_logo.py\
+	 --model_name promotech \
+	--bacteria_name 'CJEJUNI'\
+	--ngram 5  &> promotech_cjejuni.txt 
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   98.09 sec.
+    Max Memory :                                 51222 MB
+    Average Memory :                             10267.45 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                334
+    Run time :                                   188 sec.
+    Turnaround time :                            190 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@cmp-a8-n002>
+Subject: Job 4243: <LOGO_promo> in cluster <clusterCAIR> Exited
+
+Job <LOGO_promo> was submitted from host <cair-login1> by user <fatemehg> in cluster <clusterCAIR> at Thu Oct 12 20:17:39 2023
+Job was executed on host(s) <cmp-a8-n002>, in queue <normal>, as user <fatemehg> in cluster <clusterCAIR> at Thu Oct 12 20:17:39 2023
+</home/fatemehg> was used as the home directory.
+</home/fatemehg/LOGO/02_promoter_prediction> was used as the working directory.
+Started at Thu Oct 12 20:17:39 2023
+Terminated at Thu Oct 12 20:20:54 2023
+Results reported at Thu Oct 12 20:20:54 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J LOGO_promo
+#BSUB -o output.log
+#BSUB -e error.log
+
+module load miniconda/pytorch-tensorflow-cpu
+python 01_promotech_logo.py\
+	 --model_name promotech \
+	--bacteria_name 'CJEJUNI'\
+	--ngram 5  &> promotech_cjejuni.txt 
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   107.89 sec.
+    Max Memory :                                 54996 MB
+    Average Memory :                             11685.40 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                334
+    Run time :                                   193 sec.
+    Turnaround time :                            195 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+

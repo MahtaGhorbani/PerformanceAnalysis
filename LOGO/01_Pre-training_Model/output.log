@@ -1,0 +1,163 @@
+Sender: LSF System <lsfadmin@cmp-a8-n002>
+Subject: Job 2186: <logo> in cluster <clusterCAIR> Exited
+
+Job <logo> was submitted from host <cair-login1> by user <fatemehg> in cluster <clusterCAIR> at Sun Jul  9 11:24:17 2023
+Job was executed on host(s) <cmp-a8-n002>, in queue <normal>, as user <fatemehg> in cluster <clusterCAIR> at Sun Jul  9 11:24:18 2023
+</home/fatemehg> was used as the home directory.
+</home/fatemehg/LOGO/01_Pre-training_Model> was used as the working directory.
+Started at Sun Jul  9 11:24:18 2023
+Terminated at Sun Jul  9 11:27:22 2023
+Results reported at Sun Jul  9 11:27:22 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#CUDA_VISIBLE_DEVICES=0,1,2,3
+#BSUB -J logo 
+#BSUB -o output.log
+#BSUB -e error.log
+module load miniconda/pytorch-tensorflow-gpu
+#/admin/cair-sw/anaconda3/ppc64le/bin/conda activate logo_3
+CUDA_VISIBLE_DEVICES=4 python 02_train_gene_transformer_lm_hg_bert4keras_tfrecord.py \
+  --save ./ \
+  --train-data ../data/train/tf \
+  --seq-len 1000 \
+  --model-dim 256 \
+  --transformer-depth 2 \
+  --num-heads 8 \
+  --batch-size 256 \
+  --ngram 5 \
+  --stride 5 \
+  --model-name genebert \
+  --steps-per-epoch 4000 \
+  --shuffle-size 4000 &> shout.txt
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   4256.66 sec.
+    Max Memory :                                 9233 MB
+    Average Memory :                             3009.36 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   2 MB
+    Max Processes :                              6
+    Max Threads :                                824
+    Run time :                                   182 sec.
+    Turnaround time :                            185 sec.
+
+The output (if any) follows:
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@gpu-a9-n001>
+Subject: Job 2187: <logo> in cluster <clusterCAIR> Done
+
+Job <logo> was submitted from host <cair-login1> by user <fatemehg> in cluster <clusterCAIR> at Sun Jul  9 11:28:05 2023
+Job was executed on host(s) <gpu-a9-n001>, in queue <gpu>, as user <fatemehg> in cluster <clusterCAIR> at Sun Jul  9 11:28:06 2023
+</home/fatemehg> was used as the home directory.
+</home/fatemehg/LOGO/01_Pre-training_Model> was used as the working directory.
+Started at Sun Jul  9 11:28:06 2023
+Terminated at Fri Aug 11 08:39:23 2023
+Results reported at Fri Aug 11 08:39:23 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#CUDA_VISIBLE_DEVICES=0,1,2,3
+#BSUB -J logo 
+#BSUB -o output.log
+#BSUB -e error.log
+module load miniconda/pytorch-tensorflow-gpu
+#/admin/cair-sw/anaconda3/ppc64le/bin/conda activate logo_3
+CUDA_VISIBLE_DEVICES=4 python 02_train_gene_transformer_lm_hg_bert4keras_tfrecord.py \
+  --save ./ \
+  --train-data ../data/train/tf \
+  --seq-len 1000 \
+  --model-dim 256 \
+  --transformer-depth 2 \
+  --num-heads 8 \
+  --batch-size 256 \
+  --ngram 5 \
+  --stride 5 \
+  --model-name genebert \
+  --steps-per-epoch 4000 \
+  --shuffle-size 4000 &> shout.txt
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   161957184.00 sec.
+    Max Memory :                                 29784 MB
+    Average Memory :                             23236.49 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   444 MB
+    Max Processes :                              6
+    Max Threads :                                824
+    Run time :                                   2841075 sec.
+    Turnaround time :                            2841078 sec.
+
+The output (if any) follows:
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+

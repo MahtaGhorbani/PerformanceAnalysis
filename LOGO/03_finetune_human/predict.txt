@@ -1,0 +1,693 @@
+WARNING:tensorflow:There are non-GPU devices in `tf.distribute.Strategy`, not using nccl allreduce.
+train_data_file:  ['train_5_gram_CJEJUNI_2.npz', 'train_5_gram_C_JEJUNI.npz', 'train_5_gram_HPYLORI_2.npz', 'train_5_gram_SONEIDENSIS.npz', 'train_5_gram_CJEJUNI_3.npz', 'train_5_gram_CPNEUMONIAE.npz', 'train_5_gram_HPYLORI.npz', 'train_5_gram_SPYOGENE.npz', 'train_5_gram_CJEJUNI_4.npz', 'train_5_gram_ECOLI_2.npz', 'train_5_gram_LINTERROGANS.npz', 'train_5_gram_STYPHIRMURIUM.npz', 'train_5_gram_CJEJUNI_5.npz', 'train_5_gram_ECOLI.npz', 'train_5_gram_SCOELICOLOR.npz']
+validation_data_file:  ['validation_5_gram_CLOSTRIDIUM.npz', 'validation_5_gram_RHODOBACTER_1.npz', 'validation_5_gram_BACILLUS.npz', 'validation_5_gram_MYCOBACTER.npz', 'validation_5_gram_RHODOBACTER_2.npz']
+Number of devices: 1
+x:  Tensor("Embedding-Token/embedding_lookup/Identity_1:0", shape=(None, None, 128), dtype=float32)
+s:  Tensor("Embedding-Segment/embedding_lookup/Identity_1:0", shape=(None, None, 128), dtype=float32)
+Q:  Tensor("Embedding-Norm/add_1:0", shape=(None, None, 128), dtype=float32) 8 16
+QW:  Tensor("Transformer-0-MultiHeadSelfAttention/dense/BiasAdd:0", shape=(None, None, 128), dtype=float32) 8 16
+Model: "model_1"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ Input-Token (InputLayer)       [(None, None)]       0           []                               
+                                                                                                  
+ Input-Segment (InputLayer)     [(None, None)]       0           []                               
+                                                                                                  
+ Embedding-Token (Embedding)    (None, None, 128)    401280      ['Input-Token[0][0]']            
+                                                                                                  
+ Embedding-Segment (Embedding)  (None, None, 128)    256         ['Input-Segment[0][0]']          
+                                                                                                  
+ Embedding-Token-Segment (Add)  (None, None, 128)    0           ['Embedding-Token[0][0]',        
+                                                                  'Embedding-Segment[0][0]']      
+                                                                                                  
+ Embedding-Position (PositionEm  (None, None, 128)   262144      ['Embedding-Token-Segment[0][0]']
+ bedding)                                                                                         
+                                                                                                  
+ Embedding-Norm (LayerNormaliza  (None, None, 128)   256         ['Embedding-Position[0][0]']     
+ tion)                                                                                            
+                                                                                                  
+ Transformer-0-MultiHeadSelfAtt  (None, None, 128)   66048       ['Embedding-Norm[0][0]',         
+ ention (MultiHeadAttention)                                      'Embedding-Norm[0][0]',         
+                                                                  'Embedding-Norm[0][0]']         
+                                                                                                  
+ Transformer-0-MultiHeadSelfAtt  (None, None, 128)   0           ['Embedding-Norm[0][0]',         
+ ention-Add (Add)                                                 'Transformer-0-MultiHeadSelfAtte
+                                                                 ntion[0][0]']                    
+                                                                                                  
+ Transformer-0-MultiHeadSelfAtt  (None, None, 128)   256         ['Transformer-0-MultiHeadSelfAtte
+ ention-Norm (LayerNormalizatio                                  ntion-Add[0][0]']                
+ n)                                                                                               
+                                                                                                  
+ Transformer-0-FeedForward (Fee  (None, None, 128)   131712      ['Transformer-0-MultiHeadSelfAtte
+ dForward)                                                       ntion-Norm[0][0]']               
+                                                                                                  
+ Transformer-0-FeedForward-Add   (None, None, 128)   0           ['Transformer-0-MultiHeadSelfAtte
+ (Add)                                                           ntion-Norm[0][0]',               
+                                                                  'Transformer-0-FeedForward[0][0]
+                                                                 ']                               
+                                                                                                  
+ Transformer-0-FeedForward-Norm  (None, None, 128)   256         ['Transformer-0-FeedForward-Add[0
+  (LayerNormalization)                                           ][0]']                           
+                                                                                                  
+ lambda (Lambda)                (None, 128)          0           ['Transformer-0-FeedForward-Norm[
+                                                                 0][0]']                          
+                                                                                                  
+ batch_normalization (BatchNorm  (None, 128)         512         ['lambda[0][0]']                 
+ alization)                                                                                       
+                                                                                                  
+ dropout (Dropout)              (None, 128)          0           ['batch_normalization[0][0]']    
+                                                                                                  
+ CLS-Activation (Dense)         (None, 1)            129         ['dropout[0][0]']                
+                                                                                                  
+==================================================================================================
+Total params: 862,849
+Trainable params: 862,593
+Non-trainable params: 256
+__________________________________________________________________________________________________
+WARNING:tensorflow:From /admin/cair-sw/pytorch-tensorflow-cpu/miniconda3/ppc64le/lib/python3.10/site-packages/keras/backend.py:7224: StrategyBase.configure (from tensorflow.python.distribute.distribute_lib) is deprecated and will be removed in a future version.
+Instructions for updating:
+use `update_config_proto` instead.
+2023-11-26 19:32:28.182307: W tensorflow/core/util/tensor_slice_reader.cc:96] Could not open ./data/promoter_best_model_gene_bert.tf: FAILED_PRECONDITION: data/promoter_best_model_gene_bert.tf; Is a directory: perhaps your file is in a different file format and you need to use a different restore operator?
+2023-11-26 19:32:28.730012: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:354] MLIR V1 optimization pass is not enabled
+compiling...
+Loading weights for prediction from:  ./data/promoter_best_model_gene_bert.tf
+Model: "model_1"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ Input-Token (InputLayer)       [(None, None)]       0           []                               
+                                                                                                  
+ Input-Segment (InputLayer)     [(None, None)]       0           []                               
+                                                                                                  
+ Embedding-Token (Embedding)    (None, None, 128)    401280      ['Input-Token[0][0]']            
+                                                                                                  
+ Embedding-Segment (Embedding)  (None, None, 128)    256         ['Input-Segment[0][0]']          
+                                                                                                  
+ Embedding-Token-Segment (Add)  (None, None, 128)    0           ['Embedding-Token[0][0]',        
+                                                                  'Embedding-Segment[0][0]']      
+                                                                                                  
+ Embedding-Position (PositionEm  (None, None, 128)   262144      ['Embedding-Token-Segment[0][0]']
+ bedding)                                                                                         
+                                                                                                  
+ Embedding-Norm (LayerNormaliza  (None, None, 128)   256         ['Embedding-Position[0][0]']     
+ tion)                                                                                            
+                                                                                                  
+ Transformer-0-MultiHeadSelfAtt  (None, None, 128)   66048       ['Embedding-Norm[0][0]',         
+ ention (MultiHeadAttention)                                      'Embedding-Norm[0][0]',         
+                                                                  'Embedding-Norm[0][0]']         
+                                                                                                  
+ Transformer-0-MultiHeadSelfAtt  (None, None, 128)   0           ['Embedding-Norm[0][0]',         
+ ention-Add (Add)                                                 'Transformer-0-MultiHeadSelfAtte
+                                                                 ntion[0][0]']                    
+                                                                                                  
+ Transformer-0-MultiHeadSelfAtt  (None, None, 128)   256         ['Transformer-0-MultiHeadSelfAtte
+ ention-Norm (LayerNormalizatio                                  ntion-Add[0][0]']                
+ n)                                                                                               
+                                                                                                  
+ Transformer-0-FeedForward (Fee  (None, None, 128)   131712      ['Transformer-0-MultiHeadSelfAtte
+ dForward)                                                       ntion-Norm[0][0]']               
+                                                                                                  
+ Transformer-0-FeedForward-Add   (None, None, 128)   0           ['Transformer-0-MultiHeadSelfAtte
+ (Add)                                                           ntion-Norm[0][0]',               
+                                                                  'Transformer-0-FeedForward[0][0]
+                                                                 ']                               
+                                                                                                  
+ Transformer-0-FeedForward-Norm  (None, None, 128)   256         ['Transformer-0-FeedForward-Add[0
+  (LayerNormalization)                                           ][0]']                           
+                                                                                                  
+ lambda (Lambda)                (None, 128)          0           ['Transformer-0-FeedForward-Norm[
+                                                                 0][0]']                          
+                                                                                                  
+ batch_normalization (BatchNorm  (None, 128)         512         ['lambda[0][0]']                 
+ alization)                                                                                       
+                                                                                                  
+ dropout (Dropout)              (None, 128)          0           ['batch_normalization[0][0]']    
+                                                                                                  
+ CLS-Activation (Dense)         (None, 1)            129         ['dropout[0][0]']                
+                                                                                                  
+==================================================================================================
+Total params: 862,849
+Trainable params: 862,593
+Non-trainable params: 256
+__________________________________________________________________________________________________
+WARNING:tensorflow:From /gpfs/home/fatemehg/LOGO/04_finetune_on_promoter/01_promoter_logo.py:188: calling DatasetV2.from_generator (from tensorflow.python.data.ops.dataset_ops) with output_types is deprecated and will be removed in a future version.
+Instructions for updating:
+Use output_signature instead
+WARNING:tensorflow:From /gpfs/home/fatemehg/LOGO/04_finetune_on_promoter/01_promoter_logo.py:188: calling DatasetV2.from_generator (from tensorflow.python.data.ops.dataset_ops) with output_shapes is deprecated and will be removed in a future version.
+Instructions for updating:
+Use output_signature instead
+WARNING:tensorflow:From /admin/cair-sw/pytorch-tensorflow-cpu/miniconda3/ppc64le/lib/python3.10/site-packages/tensorflow/python/distribute/v1/input_lib.py:197: DistributedIteratorV1.initialize (from tensorflow.python.distribute.v1.input_lib) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use the iterator's `initializer` property instead.
+2023-11-26 19:32:30.713048: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "FlatMapDataset/_2"
+op: "FlatMapDataset"
+input: "TensorDataset/_1"
+attr {
+  key: "Targuments"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: -2
+  }
+}
+attr {
+  key: "f"
+  value {
+    func {
+      name: "__inference_Dataset_flat_map_flat_map_fn_1306"
+      attr {
+        key: "_tf_data_function"
+        value {
+          b: true
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "metadata"
+  value {
+    s: "\n\020FlatMapDataset:1"
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_INT16
+      type: DT_INT16
+      type: DT_INT16
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+2023-11-26 19:32:30.766611: W tensorflow/core/framework/dataset.cc:769] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+WARNING:tensorflow:From /admin/cair-sw/pytorch-tensorflow-cpu/miniconda3/ppc64le/lib/python3.10/site-packages/keras/distribute/distributed_training_utils_v1.py:364: StrategyBase.unwrap (from tensorflow.python.distribute.distribute_lib) is deprecated and will be removed in a future version.
+Instructions for updating:
+use `experimental_local_results` instead.
+2023-11-26 19:35:26.499694: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "FlatMapDataset/_2"
+op: "FlatMapDataset"
+input: "TensorDataset/_1"
+attr {
+  key: "Targuments"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: -2
+  }
+}
+attr {
+  key: "f"
+  value {
+    func {
+      name: "__inference_Dataset_flat_map_flat_map_fn_2315"
+      attr {
+        key: "_tf_data_function"
+        value {
+          b: true
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "metadata"
+  value {
+    s: "\n\021FlatMapDataset:19"
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_INT16
+      type: DT_INT16
+      type: DT_INT16
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+2023-11-26 19:35:26.554200: W tensorflow/core/framework/dataset.cc:769] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2023-11-26 19:47:54.320077: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "FlatMapDataset/_2"
+op: "FlatMapDataset"
+input: "TensorDataset/_1"
+attr {
+  key: "Targuments"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: -2
+  }
+}
+attr {
+  key: "f"
+  value {
+    func {
+      name: "__inference_Dataset_flat_map_flat_map_fn_2643"
+      attr {
+        key: "_tf_data_function"
+        value {
+          b: true
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "metadata"
+  value {
+    s: "\n\021FlatMapDataset:37"
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_INT16
+      type: DT_INT16
+      type: DT_INT16
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+2023-11-26 19:47:54.365168: W tensorflow/core/framework/dataset.cc:769] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2023-11-26 19:50:28.704786: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "FlatMapDataset/_2"
+op: "FlatMapDataset"
+input: "TensorDataset/_1"
+attr {
+  key: "Targuments"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: -2
+  }
+}
+attr {
+  key: "f"
+  value {
+    func {
+      name: "__inference_Dataset_flat_map_flat_map_fn_2971"
+      attr {
+        key: "_tf_data_function"
+        value {
+          b: true
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "metadata"
+  value {
+    s: "\n\021FlatMapDataset:55"
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_INT16
+      type: DT_INT16
+      type: DT_INT16
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+2023-11-26 19:50:28.741678: W tensorflow/core/framework/dataset.cc:769] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2023-11-26 20:00:00.839165: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "FlatMapDataset/_2"
+op: "FlatMapDataset"
+input: "TensorDataset/_1"
+attr {
+  key: "Targuments"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: -2
+  }
+}
+attr {
+  key: "f"
+  value {
+    func {
+      name: "__inference_Dataset_flat_map_flat_map_fn_3299"
+      attr {
+        key: "_tf_data_function"
+        value {
+          b: true
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "metadata"
+  value {
+    s: "\n\021FlatMapDataset:73"
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1000
+        }
+      }
+      shape {
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_INT16
+      type: DT_INT16
+      type: DT_INT16
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_INT16
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+2023-11-26 20:00:00.882502: W tensorflow/core/framework/dataset.cc:769] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Validation promoter files:  ['./data/validation_5_gram_CLOSTRIDIUM.npz', './data/validation_5_gram_RHODOBACTER_1.npz', './data/validation_5_gram_BACILLUS.npz', './data/validation_5_gram_MYCOBACTER.npz', './data/validation_5_gram_RHODOBACTER_2.npz']
+Load:  ./data/validation_5_gram_CLOSTRIDIUM.npz
+X:  (12946, 1000)
+Y:  (12946,)
+x_data:  1
+y_data:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  (12946, 1000)
+y_data_all:  (12946,)
+Q:  Tensor("Embedding-Norm_1/add_1:0", shape=(None, None, 128), dtype=float32, device=/replica:0/task:0/device:CPU:0) 8 16
+QW:  Tensor("Transformer-0-MultiHeadSelfAttention_1/dense/BiasAdd:0", shape=(None, None, 128), dtype=float32, device=/replica:0/task:0/device:CPU:0) 8 16
+Shuffle ..............................................
+Load:  ./data/validation_5_gram_RHODOBACTER_1.npz
+X:  (57100, 1000)
+Y:  (57100,)
+x_data:  1
+y_data:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  (57100, 1000)
+y_data_all:  (57100,)
+Shuffle ..............................................
+Load:  ./data/validation_5_gram_BACILLUS.npz
+X:  (11575, 1000)
+Y:  (11575,)
+x_data:  1
+y_data:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  (11575, 1000)
+y_data_all:  (11575,)
+Shuffle ..............................................
+Load:  ./data/validation_5_gram_MYCOBACTER.npz
+X:  (43732, 1000)
+Y:  (43732,)
+x_data:  1
+y_data:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  (43732, 1000)
+y_data_all:  (43732,)
+Shuffle ..............................................
+Load:  ./data/validation_5_gram_RHODOBACTER_2.npz
+X:  (43117, 1000)
+Y:  (43117,)
+x_data:  1
+y_data:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  1
+y_data_all:  1
+x_data_all:  (43117, 1000)
+y_data_all:  (43117,)
+Shuffle ..............................................
